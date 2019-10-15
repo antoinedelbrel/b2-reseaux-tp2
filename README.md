@@ -17,4 +17,37 @@ PC-1> ping 10.2.1.2
 
 * Lorsqu'on fait un ping de PC2 a PC1 pour la première fois, la table ARP de PC2 ne connait pas encore l'adresse mac de PC1 donc il y aura une requete ARP sur sa broadcast. On peut voir ensuite une réponse à la requête pour indiquer à quelle adresse MAC appartient l'adresse IP demandé par le ping.  
 
-* 
+* Le switch n'a pas besoin d'ip car il ne communique pas via le protocole IP mais via le protocole ethernet.
+
+* Elles ont besoin d'une IP pour se ping car pour pouvoir ping une autre machine, la machine en question a besoin d'une adresse mac et grace a l'ip elle pourra connaitre l'adresse mac.  
+
+## II. More switches  
+
+```
+PC-3> ping 10.2.2.1
+84 bytes from 10.2.2.1 icmp_seq=1 ttl=64 time=2.126 ms
+
+PC-3> ping 10.2.2.2
+84 bytes from 10.2.2.2 icmp_seq=1 ttl=64 time=37.044 ms
+84 bytes from 10.2.2.2 icmp_seq=2 ttl=64 time=5.078 ms
+```  
+Les PCs se ping bien.  
+
+```
+IOU1#show mac address-table
+          Mac Address Table
+-------------------------------------------
+
+Vlan    Mac Address       Type        Ports
+----    -----------       --------    -----
+   1    0050.7966.6801    DYNAMIC     Et0/1
+   1    0050.7966.6802    DYNAMIC     Et0/0
+   1    aabb.cc00.0120    DYNAMIC     Et0/0
+   1    aabb.cc00.0310    DYNAMIC     Et0/2
+   1    aabb.cc00.0320    DYNAMIC     Et0/0
+Total Mac Addresses for this criterion: 5
+```  
+Voila ce qu'on obtient en faisant un `show mac address-table`.  
+* Chaque adresse MAC est relié a des ports différends, les ports ET0/1 ... correspondent au protocole ethernet de chaque switch.  
+
+
