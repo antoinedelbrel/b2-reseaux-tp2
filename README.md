@@ -51,3 +51,32 @@ Voila ce qu'on obtient en faisant un `show mac address-table`.
 * Chaque adresse MAC est relié a des ports différends, les ports ET0/1 ... correspondent au protocole ethernet de chaque switch.  
 
 
+``` 
+Interface           Role Sts Cost      Prio.Nbr Type
+------------------- ---- --- --------- -------- --------------------------------
+Et0/0               Desg FWD 100       128.1    Shr
+Et0/1               Desg FWD 100       128.2    Shr
+Et0/2               Desg FWD 100       128.3    Shr
+Et0/3               Desg FWD 100       128.4    Shr
+Et1/0               Desg FWD 100       128.5    Shr
+Et1/1               Desg FWD 100       128.6    Shr
+Et1/2               Desg FWD 100       128.7    Shr
+Et1/3               Desg FWD 100       128.8    Shr
+```
+
+Le switch 2 est donc le root bridges.
+
+``` 
+
+Interface           Role Sts Cost      Prio.Nbr Type
+------------------- ---- --- --------- -------- --------------------------------
+Et0/0               Desg FWD 100       128.1    Shr
+Et0/1               Altn BLK 100       128.2    Shr
+Et0/2               Root FWD 100       128.3    Shr
+Et0/3               Desg FWD 100       128.4    Shr
+Et1/0               Desg FWD 100       128.5    Shr
+Et1/1               Desg FWD 100       128.6    Shr
+Et1/2               Desg FWD 100       128.7    Shr
+```
+
+Le switch a un port bloquer pour éviter une storm broadcast.
